@@ -8,10 +8,10 @@ export const pesquisarCep = async (cepParaPesquisar) =>{
     const data = await response.json()
 
     return {
-        state:data.state,
-        city: data.city,
-        neighborhood: data.neighborhood,
-        street: data.street,
+        logradouro: data.street,
+        bairro: data.neighborhood,
+        municipio: data.city,
+        estado: data.state
         
 
     }

@@ -1,0 +1,10 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+.car-container{
+    display: flex;
+    gap: 12px;
+}
