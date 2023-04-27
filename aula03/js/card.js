@@ -8,7 +8,7 @@ class card extends HTMLElement {
         this.nome = 'Nome do Produto'
         this.price = '0,00'
         this.foto = null
-        this.cor = 'red'
+        this.cor = 'white'
         this.descricao = 'descicao do produto'
        
 
@@ -30,56 +30,72 @@ class card extends HTMLElement {
         
         css.textContent = `
             
-            *{
-                margin: 0%;
-                padding: 0%;
-                box-sizing: border-box;
-            }
-            .card{
-                height: 300px;
-                width: 200px;
-                display: grid;
-                grid-template-rows: 20% 60% 20%;
-                place-items: center;
-                background-color: greenyellow;
-            }
-            .card__text{
-                color: #fff;
-                font-size: 1.5rem;
-                font-weight: 600;
-            }
-            .card__image{
-                height: 100px;
-                width: 100px;
-                border-radius: 50%;
-                background-color: blueviolet;
-                background-image: url(${this.foto});
-                background-size: cover;
-            }
-        
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .card {
+        background-color: ${this.cor};
+        width: 300px;
+        height: 50vh;
+        display: grid;
+        grid-template-rows: 20% 40% 20% 20%;
+        place-items: center;
+        cursor: pointer;
+        transition: 0.3s linear;
+    }
+    .card:hover{
+        box-shadow: 0px 0px 8px #00F6;
+    }
+    .card__text {
+        color: black;
+        font-size: 1.5rem;
+        font-weight: 600;
+        transition: 0.3s linear;
+    }
+    .card_text_description {
+        font-size: 1rem;
+    }
+    .card_image{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: blueviolet;
+            background-image: url(${this.foto});
+            background-size: cover;
+    }
         `
         return css
     }
     component() {
+        //Criando Card
         const card = document.createElement('div')
         card.classList.add('card')
         
-        const nomeAluno = document.createElement('h1')
-        nomeAluno.classList.add('card__text')
-        nomeAluno.textContent = this.nome
-        
-        const imagem = document.createElement('img')
-        imagem.classList.add('card__image')
+        //Nome do Produto
+        const nomeProduto = document.createElement('h1')
+        nomeProduto.classList.add('card__text')
+        nomeProduto.textContent = this.nome
 
-       
-        const turma = document.createElement('div')
-        turma.textContent = this.price
-        turma.classList.add('card__turma')
+        //Descrição do Produto
+        const descicaoProduto = document.createElement('span')
+        descicaoProduto.classList.add('card_text_description')
+        descicaoProduto.textContent=this.descricao
 
-        card.append(nomeAluno, imagem, turma)
+        //imagem do produto
+        const imagemProduto = document.createElement('img')
+        imagemProduto.classList.add('card_image')
+
+       //preço
+        const pirceProduto = document.createElement('div')
+        pirceProduto.textContent = this.price
+        pirceProduto.classList.add('card_price')
+
+        card.append(nomeProduto,descicaoProduto, imagemProduto, pirceProduto )
 
         return card
     }
 }
 
-customElements.define('card-gustavo', card)
+customElements.define('card-produtos', card)
